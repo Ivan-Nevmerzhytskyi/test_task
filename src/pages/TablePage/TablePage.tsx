@@ -7,9 +7,19 @@ import * as usersActions from '../../store/features/users';
 import { UsersSort } from './components/UsersSort';
 import { UsersSearch } from './components/UsersSearch';
 import { Pagination } from './components/Pagination';
-import { TableDataForm } from './components/TableDataForm';
 import { Loader } from '../../common/components/Loader';
 import { ErrorNotification } from '../../common/components/ErrorNotification';
+import { TableData } from './components/TableData';
+
+const fields: (
+  'name' | 'email' | 'birthday_date' | 'phone_number' | 'address'
+)[] = [
+  'name',
+  'email',
+  'birthday_date',
+  'phone_number',
+  'address',
+];
 
 export const TablePage: React.FC = React.memo(() => {
   const { users, loading, errorMessage } = useAppSelector(state => state.users);
@@ -18,7 +28,6 @@ export const TablePage: React.FC = React.memo(() => {
   const [sortedUsers, setSortedUsers] = useState<UserType[]>([]);
   const [searchedUsers, setSearchedUsers] = useState<UserType[]>([]);
   const [visibleUsers, setVisibleBooks] = useState<UserType[]>([]);
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     dispatch(usersActions.getUsers());
@@ -63,86 +72,13 @@ export const TablePage: React.FC = React.memo(() => {
                           key={user.id}
                           className="tablePage__tr"
                         >
-                          <td
-                            className="tablePage__td"
-                            onDoubleClick={() => setIsEditing(true)}
-                          >
-                            {isEditing ? (
-                              <TableDataForm
-                                userId={user.id}
-                                data={user.name}
-                                field="name"
-                                isEditing={isEditing}
-                                setIsEditing={setIsEditing}
-                              />
-                            ) : (
-                              `${user.name}`
-                            )}
-                          </td>
-                          <td
-                            className="tablePage__td"
-                            onDoubleClick={() => setIsEditing(true)}
-                          >
-                            {isEditing ? (
-                              <TableDataForm
-                                userId={user.id}
-                                data={user.email}
-                                field="email"
-                                isEditing={isEditing}
-                                setIsEditing={setIsEditing}
-                              />
-                            ) : (
-                              `${user.email}`
-                            )}
-                          </td>
-                          <td
-                            className="tablePage__td"
-                            onDoubleClick={() => setIsEditing(true)}
-                          >
-                            {isEditing ? (
-                              <TableDataForm
-                                userId={user.id}
-                                data={user.birthday_date}
-                                field="birthday_date"
-                                isEditing={isEditing}
-                                setIsEditing={setIsEditing}
-                              />
-                            ) : (
-                              `${user.birthday_date}`
-                            )}
-                          </td>
-                          <td
-                            className="tablePage__td"
-                            onDoubleClick={() => setIsEditing(true)}
-                          >
-                            {isEditing ? (
-                              <TableDataForm
-                                userId={user.id}
-                                data={user.phone_number}
-                                field="phone_number"
-                                isEditing={isEditing}
-                                setIsEditing={setIsEditing}
-                              />
-                            ) : (
-                              `${user.phone_number}`
-                            )}
-                          </td>
-                          <td
-                            className="tablePage__td"
-                            onDoubleClick={() => setIsEditing(true)}
-                          >
-                            {isEditing ? (
-                              <TableDataForm
-                                userId={user.id}
-                                data={user.address}
-                                field="address"
-                                isEditing={isEditing}
-                                setIsEditing={setIsEditing}
-                              />
-                            ) : (
-                              `${user.address}`
-                            )}
-                          </td>
+                          {fields.map(fieldName => (
+                            <TableData
+                              key={fieldName}
+                              user={user}
+                              field={fieldName}
+                            />
+                          ))}
                         </tr>
                       ))}
                     </tbody>

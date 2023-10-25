@@ -56,6 +56,7 @@ export const TableDataForm: React.FC<Props> = React.memo(({
     <form onSubmit={handleSubmit}>
       <input
         type="text"
+        name="text"
         className="tableDataForm__field"
         defaultValue={data}
         ref={inputField}

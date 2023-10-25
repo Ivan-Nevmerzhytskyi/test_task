@@ -21,14 +21,14 @@ export const addUser = (data: Omit<UserType, 'id'>) => {
 };
 
 export const updateUser = ({ id, ...data }: UserType) => {
-  return client.put<UserType>(`/api/table/${id}`, data);
+  return client.put<UserType>(`/api/table/${id}/`, data);
 };
 
 export const partialUpdateUser = ({
   id,
   ...data
 }: Partial<UserType> & Pick<UserType, 'id'>) => {
-  return client.patch<UserType>(`/api/table/${id}`, data);
+  return client.patch<UserType>(`/api/table/${id}/`, data);
 };
 
 export const deleteUser = (id: number) => {
