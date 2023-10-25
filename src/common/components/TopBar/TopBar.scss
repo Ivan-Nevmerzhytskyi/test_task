@@ -1,0 +1,21 @@
+@use '../../styles/utils/variables' as *;
+@use '../../styles/utils/mixins' as *;
+
+.topBar {
+  padding-block: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include onTablet {
+    padding-block: 15px;
+  }
+
+  &--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: $main-bg-color;
+    opacity: 0.9;
+  }
+}

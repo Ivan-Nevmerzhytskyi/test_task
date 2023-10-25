@@ -1,0 +1,52 @@
+@use '../../common/styles/utils/variables' as *;
+@use '../../common/styles/utils/mixins' as *;
+
+.tablePage {
+  background-color: $second-bg-color;
+  border-radius: 50px 50px 0 0;
+
+  &__content {
+    display: grid;
+    row-gap: 10px;
+    padding-block: 40px;
+
+    @include onTablet {
+      padding-block: 50px;
+    }
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+
+    @include onTablet {
+      font-size: 20px;
+    }
+  }
+
+  &__table {
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &__tr {
+    border-bottom: 1px solid rgb(128, 128, 128);
+  }
+
+  &__th {
+    padding: 4px 8px;
+    text-align: left;
+  }
+
+  &__td {
+    padding: 4px 8px;
+    word-break: break-all;
+  }
+}

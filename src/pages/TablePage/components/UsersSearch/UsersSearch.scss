@@ -1,0 +1,45 @@
+@use '../../../../common/styles/utils/variables' as *;
+@use '../../../../common/styles/utils/mixins' as *;
+
+.usersSearch {
+  padding: 10px 20px;
+  background-color: $second-bg-color;
+  border: 1px dotted $main-text-color;
+  border-radius: 10px;
+
+  @include hover(box-shadow, 0 0 20px $main-text-color);
+
+  &__label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 14px 16px;
+
+    border: 1px solid $main-text-color;
+    border-radius: 10px;
+    background-color: $second-bg-color;
+
+    font-size: 16px;
+    color: $main-text-color;
+
+    &::placeholder {
+      font-size: 14px;
+      color: $main-text-color;
+      opacity: 0.7;
+    }
+
+    @include hover(border-color, blueviolet);
+
+    &:focus {
+      border-color: blue;
+      outline: none;
+    }
+  }
+}

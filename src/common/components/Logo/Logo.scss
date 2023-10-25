@@ -1,0 +1,17 @@
+@use '../../styles/utils/mixins' as *;
+
+.logo {
+  &__link {
+    display: flex;
+  }
+
+  &__img {
+    height: 40px;
+
+    @include hover(transform, scale(1.2));
+
+    @include onDesktop {
+      height: 50px;
+    }
+  }
+}

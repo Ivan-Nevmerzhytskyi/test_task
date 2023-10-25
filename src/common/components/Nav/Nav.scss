@@ -1,0 +1,57 @@
+@use '../../styles/utils/variables' as *;
+@use '../../styles/utils/mixins' as *;
+
+.nav {
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &__item {
+    @include hover(transform, scale(1.2));
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+
+    color: $main-text-color;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+
+    &--is-active {
+      background-color: rgb(73, 130, 171);
+      border-radius: 10px;
+      color: $second-bg-color;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: blue;
+
+      transition: transform, $effectDuration;
+      transform: scale(0);
+      transform-origin: left;
+    }
+
+    &:hover::after {
+      transform: scale(1);
+    }
+  }
+}
